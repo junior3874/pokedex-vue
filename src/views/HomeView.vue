@@ -25,7 +25,7 @@
       <div class="imagemHome">
         <img src="../assets/homepageImage.png" alt="">
       </div>
-    </section>  
+    </section>
 
   </container>
 </template>
@@ -34,11 +34,10 @@
 <script lang="ts">
 
 import { defineComponent } from 'vue';
-import Button from '../components/Button.vue'
 
 export default defineComponent({
   components: {
-    
+
   }
 
 })
@@ -50,7 +49,7 @@ export default defineComponent({
 
 .home {
   display: grid;
-  grid-template-columns: 1fr 1fr ;
+  grid-template-columns: 1fr 1fr;
 }
 
 .textSection {
@@ -58,12 +57,12 @@ export default defineComponent({
   flex-direction: column;
   justify-content: space-around;
   margin-left: 170px;
-  
+
 }
 
 .txt {
 
-  
+
 
   h1 {
     font-family: 'Inter', sans-serif;
@@ -83,10 +82,7 @@ export default defineComponent({
 
 }
 
-.buttonDiv {
- 
-
-} 
+.buttonDiv {}
 
 .ListButton {
   width: 231px;
@@ -97,20 +93,17 @@ export default defineComponent({
   font-size: 20px;
   color: white;
   font-family: 'Inter', sans-serif;
-  
+
 
 }
 
-.ListButton:hover{
+.ListButton:hover {
   cursor: pointer;
   width: 250px;
   height: 74px;
 
 }
-.imagemHome {
 
-
-
-}
+.imagemHome {}
 </style>
 
