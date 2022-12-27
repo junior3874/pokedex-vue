@@ -72,14 +72,14 @@ export default defineComponent({
                 this.offset += 18
                 this.page++
             }
-            else {
-                const limit = this.page === 9 ? 7 : 18;
-                api.get(`/pokemon?limit=${limit}&offset=${this.offset}`)
-                    .then(response => {
-                        this.pkm = response.data.results
-                    });
 
-            }
+            const limit = this.page === 9 ? 7 : 18;
+            api.get(`/pokemon?limit=${limit}&offset=${this.offset}`)
+                .then(response => {
+                    this.pkm = response.data.results
+                });
+
+
 
         },
         async current_Data() {
