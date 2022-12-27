@@ -35,7 +35,7 @@ export const pokemonTypeDictionary = {
         name: "Fantasma",
         color: "#B97FC9"
     },
-    "stell": {
+    "steel": {
         name: "Ferro",
         color: "#9EB7B8"
     },
@@ -47,7 +47,7 @@ export const pokemonTypeDictionary = {
         name: "Água",
         color: "#46C5D7"
     },
-    "eletric": {
+    "electric": {
         name: "Elétrico",
         color: "#FFCE4B"
     },
