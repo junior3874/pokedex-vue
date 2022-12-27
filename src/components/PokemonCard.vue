@@ -3,7 +3,7 @@
     <div class="card" :style="cssVars">
         <div class="ladoEsquerdo">
             <div class="nomePokemon"> {{ name }} </div>
-            <div class="tipoPokemon" v-for="item in typeList" :key="item">
+            <div class="tipoPokemon" v-for="item in typeList.types" :key="item.type.name">
                 <div class="typexx">
                     <p>
                         {{ pokemonTypeDictionary(item.type.name, "name") }}
@@ -12,8 +12,8 @@
             </div>
         </div>
         <div class="ladoDireito">
-            <div class="idPokemon"> {{ pokemonIdSintax(pokemonUrl.id) }} </div>
-            <div class="foto"> <img v-bind:src="pokemonUrl.sprites?.front_default"></div>
+            <div class="idPokemon"> {{ pokemonIdSintax(pokemonData.id) }} </div>
+            <div class="foto"> <img v-bind:src="pokemonData.sprites?.front_default"></div>
         </div>
 
     </div>
@@ -22,6 +22,24 @@
 import { defineComponent } from 'vue';
 import axios from "axios";
 import { pokemonTypeDictionary } from '@/utils';
+
+
+type PokemonTypes = {
+    types: {
+        slot: number;
+        type: {
+            name: keyof typeof pokemonTypeDictionary,
+            url: string
+        }
+    }[]
+}
+type PokemonData = {
+    sprites: {
+        front_default: string
+    },
+    id: number
+} & PokemonTypes
+
 export default defineComponent({
     props: {
         name: String,
@@ -29,14 +47,14 @@ export default defineComponent({
         img: String
     },
     data() {
-        return { pokemonUrl: {} as any, pokemonId: "" as any, pokemonType: "" as any, typeList: [] as any, typeColor: "" as string, backgroundTypeColor: "white" as string, fontTypeColor: "black" }
+        return { pokemonData: {} as PokemonData, pokemonType: {} as PokemonTypes, typeList: [] as unknown as PokemonTypes, typeColor: "" as string, backgroundTypeColor: "white" as string, fontTypeColor: "black" }
     },
     beforeMount() {
         axios.get(`${this.url}`)
             .then(response => {
-                this.pokemonUrl = JSON.parse(JSON.stringify(response.data))
-                this.typeList = this.pokemonUrl.types
-                this.typeColor = this.pokemonTypeDictionary(this.typeList[0].type.name, "color")
+                this.pokemonData = response.data;
+                this.typeList = { types: this.pokemonData.types }
+                this.typeColor = this.pokemonTypeDictionary(this.typeList.types[0].type.name, "color")
             })
             .catch(error => {
                 console.error(error)
